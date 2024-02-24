@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="./asyncAwait.js"></script> -->
+    <!-- <script src="./promise.js"></script> -->
+    <!-- <script src="./calback.js"></script> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fetchData(url, callback) {
+        const response = new XMLHttpRequest();
+
+        response.onreadystatechange = function () {
+          if (response.readyState === 4 && response.status === 200) {
+            callback(response.responseText);
+          }
+        };
+        response.open("GET", url);
+        response.send();
+      }
+
+      function displayData(data) {
+        console.log(data);
+      }
+
+      fetchData("https://api.github.com/users/defunkt", displayData);
+
+      //   function getPromise(url) {
+      //     return new Promise((resolve, reject) => {
+      //       const response = new XMLHttpRequest();
+      //       response.open("GET", url);
+      //       response.send();
+      //       response.onreadystatechange = function () {
+      //         if (response.readyState === 4 && response.status === 200) {
+      //           resolve(response.responseText);
+      //         } else {
+      //           reject("Error");
+      //         }
+      //       };
+      //     });
+      //   }
+
+      //   function displayData(data) {
+      //     console.log(data);
+      //   }
+
+      //   getPromise("https://api.github.com/users/defunkt");
+
+      //   async function getData(url) {
+      //     try {
+      //       const response = new XMLHttpRequest();
+      //       return new Promise((resolve, reject) => {
+      //         response.onreadystatechange = function () {
+      //           if (response.readyState === 4 && response.status === 200) {
+      //             resolve(response.responseText);
+      //           } else {
+      //             reject("Error");
+      //           }
+      //         };
+      //         response.open("GET", url);
+      //         response.send();
+      //       });
+      //     } catch (error) {
+      //       console.log(error);
+      //     }
+      //   }
+
+      //   function displayData(data) {
+      //     console.log(data);
+      //   }
+
+      //   getData("https://api.github.com/users/defunkt").then(displayData);
+    </script>
+  </body>
+</html>
